@@ -3,11 +3,13 @@ package com.example.sunilrestdemo.service;
 import com.example.sunilrestdemo.dao.BookDao;
 import com.example.sunilrestdemo.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
+@Qualifier("bookdbservice")
 public class BookServiceImpl implements BookService {
     @Autowired
     BookDao bookDao;
@@ -22,18 +24,18 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Optional<Book> getBook(Long id) {
-        return bookDao.findById(id);
+    public Book getBook(String id) {
+        return bookDao.findById(id).orElse(new Book());
     }
 
     @Override
-    public Boolean deleteBook(Long id) {
+    public Boolean deleteBook(String id) {
         bookDao.deleteById(id);
         return true;
     }
 
     @Override
-    public Book updateBook(Long id, Book book) {
+    public Book updateBook(String id, Book book) {
         return bookDao.save(book);
     }
 

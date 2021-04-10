@@ -3,6 +3,7 @@ package com.example.sunilrestdemo.controller;
 import com.example.sunilrestdemo.entity.Book;
 import com.example.sunilrestdemo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Optional;
 public class BookController {
 
     @Autowired
+    @Qualifier("bookrestservice")
     private BookService bookService;
 
     @GetMapping("")
@@ -20,12 +22,12 @@ public class BookController {
        return this.bookService.getBooks();
     }
     @GetMapping("/{bookId}")
-    public Optional<Book> getBook(@PathVariable String bookId){
-        return this.bookService.getBook(Long.parseLong(bookId));
+    public Book getBook(@PathVariable String bookId){
+        return this.bookService.getBook(bookId);
     }
     @DeleteMapping("/{bookId}")
     public Boolean deleteBook(@PathVariable  String bookId){
-        return this.bookService.deleteBook(Long.parseLong(bookId));
+        return this.bookService.deleteBook(bookId);
     }
     @PostMapping("")
     public Book saveBook(@RequestBody  Book book){
@@ -33,7 +35,7 @@ public class BookController {
     }
     @PutMapping("/{bookId}")
     public Book updateBook(@PathVariable String bookId,@RequestBody Book book){
-        book.setId(Long.parseLong(bookId));
-        return this.bookService.updateBook(Long.parseLong(bookId),book);
+        book.setId(bookId);
+        return this.bookService.updateBook(bookId,book);
     }
 }
