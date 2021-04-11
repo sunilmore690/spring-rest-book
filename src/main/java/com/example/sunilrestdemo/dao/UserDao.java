@@ -1,9 +1,8 @@
 package com.example.sunilrestdemo.dao;
 
-import com.example.sunilrestdemo.entity.Book;
 import com.example.sunilrestdemo.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface UserDao  extends JpaRepository<User,Long> {
+public interface UserDao  extends MongoRepository<User,String> {
     User findByUsername(String username);
 }

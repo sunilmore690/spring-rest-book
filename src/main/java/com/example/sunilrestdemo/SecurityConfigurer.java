@@ -27,10 +27,10 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(myUserDetailsService);
     }
     //To disable web secuirty
-    @Override
-    protected void configure(HttpSecurity http) throws Exception{
-        http.cors().and().csrf().disable();
-    }
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception{
+//        http.cors().and().csrf().disable();
+//    }
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
