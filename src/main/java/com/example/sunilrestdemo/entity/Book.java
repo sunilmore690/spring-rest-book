@@ -1,13 +1,14 @@
 package com.example.sunilrestdemo.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
+@Document(collection = "books")
 public class Book {
 
     @Id
@@ -16,7 +17,6 @@ public class Book {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    @Column(updatable = false, nullable = false)
     private String id;
 
     private String name;

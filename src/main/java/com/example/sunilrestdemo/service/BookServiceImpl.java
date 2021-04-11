@@ -4,6 +4,8 @@ import com.example.sunilrestdemo.dao.BookDao;
 import com.example.sunilrestdemo.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -12,7 +14,11 @@ import java.util.*;
 @Qualifier("bookdbservice")
 public class BookServiceImpl implements BookService {
     @Autowired
+    MongoTemplate mongoTemplate;
+
+    @Autowired
     BookDao bookDao;
+
     @Override
     public List<Book> getBooks() {
         return bookDao.findAll();

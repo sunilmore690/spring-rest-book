@@ -50,6 +50,7 @@ public class BookController {
         if(bean.equalsIgnoreCase(BeanConstant.restbean)){
             return this.bookRestService.saveBook(book);
         }
+
         return this.bookDbService.saveBook(book);
     }
     @PutMapping("/{bookId}")
