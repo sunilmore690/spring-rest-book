@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
 @Qualifier("bookrestservice")
 public class BookRestServiceImpl implements  BookService{
 
+
     @Autowired
     RestTemplate restTemplate;
-
     private String baseUrl= "https://sunilmore-rest-api.herokuapp.com";
     @Override
     public List<Book> getBooks() {

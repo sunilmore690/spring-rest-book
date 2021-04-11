@@ -2,8 +2,8 @@ package com.example.sunilrestdemo.dao;
 
 import com.example.sunilrestdemo.entity.Book;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface BookDao  extends MongoRepository<Book,String> {
+public interface BookDao  extends JpaRepository<Book,String> {
 }

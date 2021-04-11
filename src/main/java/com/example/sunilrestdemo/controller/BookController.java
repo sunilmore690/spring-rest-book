@@ -22,10 +22,17 @@ public class BookController {
     @Qualifier(BeanConstant.dbbean)
     private BookService bookDbService;
 
+    @Autowired
+    @Qualifier(BeanConstant.mongodbbean)
+    private BookService bookMongoDbService;
+
     @GetMapping("")
     public List<Book> getBooks(@RequestHeader("bean") String bean){
         if(bean.equalsIgnoreCase(BeanConstant.restbean)){
             return this.bookRestService.getBooks();
+        }
+        if(bean.equalsIgnoreCase(BeanConstant.mongodbbean)){
+            return this.bookMongoDbService.getBooks();
         }
         return this.bookDbService.getBooks();
     }
@@ -35,12 +42,18 @@ public class BookController {
         if(bean.equalsIgnoreCase(BeanConstant.restbean)){
             return this.bookRestService.getBook(bookId);
         }
+        if(bean.equalsIgnoreCase(BeanConstant.mongodbbean)){
+            return this.bookMongoDbService.getBook(bookId);
+        }
         return this.bookDbService.getBook(bookId);
     }
     @DeleteMapping("/{bookId}")
     public Boolean deleteBook(@PathVariable  String bookId,@RequestHeader("bean") String bean){
         if(bean.equalsIgnoreCase(BeanConstant.restbean)){
             return this.bookRestService.deleteBook(bookId);
+        }
+        if(bean.equalsIgnoreCase(BeanConstant.mongodbbean)){
+            return this.bookMongoDbService.deleteBook(bookId);
         }
         return this.bookDbService.deleteBook(bookId);
 
@@ -50,7 +63,9 @@ public class BookController {
         if(bean.equalsIgnoreCase(BeanConstant.restbean)){
             return this.bookRestService.saveBook(book);
         }
-
+        if(bean.equalsIgnoreCase(BeanConstant.mongodbbean)){
+            return this.bookMongoDbService.saveBook(book);
+        }
         return this.bookDbService.saveBook(book);
     }
     @PutMapping("/{bookId}")
@@ -58,6 +73,9 @@ public class BookController {
         book.setId(bookId);
         if(bean.equalsIgnoreCase(BeanConstant.restbean)){
             return this.bookRestService.updateBook(bookId,book);
+        }
+        if(bean.equalsIgnoreCase(BeanConstant.mongodbbean)){
+            return this.bookMongoDbService.updateBook(bookId,book);
         }
         return this.bookDbService.updateBook(bookId,book);
 

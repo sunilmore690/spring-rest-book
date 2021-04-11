@@ -13,8 +13,7 @@ import java.util.*;
 @Service
 @Qualifier("bookdbservice")
 public class BookServiceImpl implements BookService {
-    @Autowired
-    MongoTemplate mongoTemplate;
+
 
     @Autowired
     BookDao bookDao;

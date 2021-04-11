@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@Entity
 @Document(collection = "books")
 public class Book {
 
@@ -17,6 +18,7 @@ public class Book {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
+    @Column(updatable = false, nullable = false)
     private String id;
 
     private String name;
